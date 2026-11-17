@@ -15,6 +15,9 @@ public final class PvoConfig {
     public static final double DRAG_AFTER_THRUST = 0.995;
     public static final double MAX_LEAD_TICKS = 10.0;
     public static final int MAX_LIFETIME_TICKS = 120;
+    // Наводиться только ракеты, у которых есть живой стрелок (игрок или моб).
+    // Ракета из раздатчика владельца не имеет, поэтому остаётся обычной и не ломает редстоун-схемы.
+    public static final boolean REQUIRE_LIVING_SHOOTER = true;
     public static final boolean DEBUG = false;
 
     public static final double MAX_TURN_RAD_PER_TICK = MAX_TURN_DEGREES_PER_TICK * Math.PI / 180.0;

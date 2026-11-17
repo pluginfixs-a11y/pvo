@@ -103,12 +103,18 @@ public abstract class FireworkRocketEntityMixin extends Projectile {
         if (this.attachedToEntity != null) {
             return false;
         }
-        // 2. Игнорируем обычные салюты (с руки, из раздатчиков и т.д.)
+        // 2. Только ракеты с живым стрелком: игрок или моб.
+        //    Раздатчик сущностью не является, владельца у выпущенной им ракеты нет,
+        //    поэтому такая ракета остаётся полностью ванильной — редстоун-схемы не ломаются.
+        if (PvoConfig.REQUIRE_LIVING_SHOOTER && !(this.getOwner() instanceof LivingEntity)) {
+            return false;
+        }
+        // 3. Игнорируем обычные салюты (с руки, из раздатчиков и т.д.)
         // ПВО интеллект активируется ТОЛЬКО если ракета выстрелена из арбалета
         if (!this.isShotAtAngle()) {
             return false;
         }
-        // 3. Проверяем наличие пиротехнических зарядов (звездочек) в ракете
+        // 4. Проверяем наличие пиротехнических зарядов (звездочек) в ракете
         return pvo$hasFireworkExplosions();
     }
 

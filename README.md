@@ -11,6 +11,14 @@ Found one — the rocket steers towards it every tick until it hits, loses the t
 Tuned for flying mobs: vexes, ghasts, happy ghasts, wither, ender dragon and other airborne entities.
 Bats are excluded. Ground mobs are not targeted.
 
+## Only shots from players and mobs
+
+A rocket homes only when it has a **living shooter** — a player with a crossbow, or a mob. A rocket fired by a
+**dispenser has no owner**, so it stays completely vanilla: same flight, same lifetime, same explosion. Redstone
+contraptions that use firework rockets keep working exactly as before.
+
+`REQUIRE_LIVING_SHOOTER` in `PvoConfig` turns this filter off (not recommended).
+
 ## Tuning
 
 Everything lives in `com.example.PvoConfig` as constants (no JSON config):
@@ -28,6 +36,7 @@ Everything lives in `com.example.PvoConfig` as constants (no JSON config):
 | `LOST_TARGET_MEMORY_TICKS` | `30` | how long a lost target is remembered |
 | `MAX_LEAD_TICKS` | `10.0` | target leading |
 | `MAX_LIFETIME_TICKS` | `120` | hard lifetime cap |
+| `REQUIRE_LIVING_SHOOTER` | `true` | ignore rockets without an owner (dispensers) |
 | `DEBUG` | `false` | log targeting decisions |
 
 ## Install
