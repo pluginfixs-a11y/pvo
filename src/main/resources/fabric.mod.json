@@ -1,38 +1,30 @@
 {
-	"schemaVersion": 1,
-	"id": "pvo",
-	"version": "${version}",
-	"name": "pvo",
-	"description": "Player-guided firework rockets (PVO) - server-side homing firework behaviour.",
-	"authors": [
-		"Me!"
-	],
-	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
-	},
-	"license": "CC0-1.0",
-	"icon": "assets/pvo/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"com.example.Pvo"
-		],
-		"client": [
-			"com.example.client.PvoClient"
-		]
-	},
-	"mixins": [
-		"pvo.mixins.json",
-		{
-			"config": "pvo.client.mixins.json",
-			"environment": "client"
-		}
-	],
-	"depends": {
-		"fabricloader": ">=0.20.1",
-		"minecraft": "${minecraft_dep}",
-		"java": ">=25",
-		"fabric-api": "*"
-	}
+  "schemaVersion": 1,
+  "id": "pvo",
+  "version": "${version}",
+  "name": "PVO",
+  "description": "Player-guided firework rockets (PVO) - server-side homing firework behaviour.",
+  "authors": [
+    "deaefer"
+  ],
+  "contact": {
+    "sources": "https://github.com/pluginfixs-a11y/pvo"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/pvo/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.example.Pvo"
+    ]
+  },
+  "mixins": [
+    "pvo.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": "${minecraft_dep}",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
 }

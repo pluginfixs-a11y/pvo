@@ -8,8 +8,9 @@ target in front of the shooter and home in on it. Vanilla clients need nothing i
 When a firework rocket is launched, the server looks for a target inside a cone in front of the shooter.
 Found one — the rocket steers towards it every tick until it hits, loses the target or runs out of lifetime.
 
-Tuned for flying mobs: vexes, ghasts, happy ghasts, wither, ender dragon and other airborne entities.
-Bats are excluded. Ground mobs are not targeted.
+Tuned for flying mobs: phantoms, vexes, ghasts, happy ghasts, blazes, allays, the wither and the ender
+dragon. Bats are excluded on purpose. Ground mobs are not targeted, and a player only counts as a target
+while gliding with an elytra.
 
 ## Only shots from players and mobs
 
@@ -28,7 +29,7 @@ Everything lives in `com.example.PvoConfig` as constants (no JSON config):
 | `TARGET_RANGE` | `128.0` | search radius |
 | `CONE_ANGLE_DEGREES` | `30.0` | half-angle of the search cone |
 | `SEARCH_INTERVAL_TICKS` | `3` | re-target interval |
-| `ARM_DELAY_TICKS` | `3` | ticks before guidance starts |
+| `ARM_DELAY_TICKS` | `3` | arming delay: no proximity or block detonation before this age (steering starts on tick 1) |
 | `PROXIMITY_RADIUS` | `1.0` | detonation radius |
 | `INITIAL_SPEED` / `MAX_SPEED` | `0.5` / `4.5` | blocks per tick |
 | `THRUST_DURATION_TICKS` | `35` | powered flight time |
@@ -41,7 +42,16 @@ Everything lives in `com.example.PvoConfig` as constants (no JSON config):
 
 ## Install
 
-Fabric Loader ≥ 0.20.1 + Fabric API on the server, jar into `mods/`.
+Fabric Loader ≥ 0.20.1 + Fabric API on the server, jar into `mods/`. Nothing is registered — no items,
+blocks, GUI or packets — and the mod has no client half: three mixins on the server only
+(`FireworkRocketEntity`, its `explode` accessor and `EntityType.clientTrackingRange`).
+
+## Changes
+
+**1.2.2** — removed the example mixin that shipped with the Fabric template (it injected into
+`MinecraftServer.loadLevel` and did nothing, but it was listed in a `"required": true` config, so a renamed
+vanilla method on a future game version would have taken the whole mod down), plus the empty client
+entrypoint and client mixin config. No behaviour change.
 
 ## Build
 
